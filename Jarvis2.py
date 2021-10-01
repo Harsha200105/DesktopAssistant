@@ -5,6 +5,8 @@ import wikipedia
 import webbrowser
 import os
 import smtplib
+import sys
+import random
 
 print("Initializing Jarvis....")
 MASTER = "Harsha"
@@ -14,10 +16,10 @@ engine = pyttsx3.init('nsss')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
+
 def speak(text):
     engine.say(text)
     engine.runAndWait()
-
 
 
 def wishMe():
@@ -69,10 +71,14 @@ query = takeCommand()
 if 'wikipedia' in query.lower():
     speak('Searching wikipedia....')
     query = query.replace("wikipedia", "")
-    results = wikipedia.summary(query, sentences = 2)
+    results = wikipedia.summary(query, sentences=2)
     print(results)
     speak(results)
 
+elif "what\'s up" in query or 'how are you' in query:
+    stMsgs = ['Just doing my thing!', 'I am fine!',
+              'Nice!', 'I am nice and full of energy']
+    speak(random.choice(stMsgs))
 
 elif 'open youtube' in query.lower():
 
@@ -83,15 +89,51 @@ elif 'open youtube' in query.lower():
     webbrowser.get(chrome_path).open(url)
 
 elif 'on google' in query.lower():
-    
+
     webbrowser.open("google.com")
     url = 'https://www.google.com/'
 
     chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
     webbrowser.get(chrome_path).open(url)
 
-# elif 'play music' in query.lower():
-#     songs_dir = "//Users//bindu//Desktop//imusic"
-#     songs = os.listdir(songs_dir)
-#     print(songs)
-#     os.open(os.path.join(songs_dir, songs[0]))
+elif 'email' in query:
+    speak('Who is the recipient? ')
+    recipient = takeCommand()
+
+    if 'me' in recipient:
+        try:
+            speak('What should I say? ')
+            content = takeCommand()
+
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.ehlo()
+            server.starttls()
+            server.login("Your_Username", 'Your_Password')
+            server.sendmail('Your_Username', "Recipient_Username", content)
+            server.close()
+            speak('Email sent!')
+
+        except:
+            speak('Sorry Sir! I am unable to send your message at this moment!')
+
+elif 'nothing' in query or 'abort' in query or 'stop' in query:
+    speak('okay')
+    speak('Bye Sir, have a good day.')
+    sys.exit()
+
+elif 'hello' in query:
+    speak('Hello Sir')
+
+elif 'bye' in query:
+    speak('Bye Sir, have a good day.')
+    sys.exit()
+
+elif 'play music' in query:
+    music_folder = Your_music_folder_path
+    music = [music1, music2, music3, music4, music5]
+    random_music = music_folder + random.choice(music) + '.mp3'
+    os.system(random_music)
+
+    speak('Playing your request')
+
+speak('Next Command! Sir!')
