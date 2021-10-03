@@ -129,8 +129,8 @@ elif 'bye' in query:
     sys.exit()
 
 elif 'play music' in query:
-    music_folder = Your_music_folder_path
-    music = [music1, music2, music3, music4, music5]
+    music_folder = 'Your_music_folder_path(absolute_path)'
+    music = ['music1', 'music2', 'music3', 'music4','music5']
     random_music = music_folder + random.choice(music) + '.mp3'
     os.system(random_music)
 
