@@ -5,6 +5,14 @@ A Virtual Desktop Assistant Written in Python.
 <img src="https://github.com/Harsha200105/DesktopAssitant/blob/main/resource/JJ.jpeg">  <br>
 The basic purpose of this is to make work easier as it re-directs you to various main sites and performs various important functions for your PC as well just install it for your system and run it in your code editor or IDE. I will be soon updating it as an application for MacOS, Linux and Windows. Until then you can follow the Contributing Guidelines and Contribute into this Desktop Assistant.<br>
 
+Steps to run the Assistant on your pc------------------(use python 3.9)
+
+step1. Installing all the necessary python module as mentioned in the requirements.txt file
+        
+step2. For windows user run Jarvis2_4windows.py script. 
+
+Wow All done! Now give the command to jarvis.
+
 # Contributing Guidelines :<br>
 - We are Open for Pull Requests
 - Please contribute and add value to the code

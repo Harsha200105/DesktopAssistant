@@ -15,7 +15,20 @@ MASTER = "Tony Stark"
 
 engine = pyttsx3.init('sapi5') #
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[0].id)
+engine.setProperty('voice', voices[0].id) #for male voices
+# engine.setProperty('voice', voices[1].id)  #for female voice
+
+""" RATE"""
+rate = engine.getProperty('rate')   # getting details of current speaking rate
+print ("current voice rate is: ",rate) #printing current voice rate
+engine.setProperty('rate',170)     # setting up new voice rate
+engine.runAndWait()
+
+"""VOLUME"""
+volume = engine.getProperty('volume')   #getting to know current volume level (min=0 and max=1)
+print ("volume level is at : ",volume)                          #printing current volume level
+engine.setProperty('volume',1.0)    # setting up volume level  between 0 and 1
+
 popular_websites = {'google': 'https://www.google.com',
                     'youtube': 'https://www.youtube.com',
                     'wikipedia': 'https://www.wikipedia.org',
