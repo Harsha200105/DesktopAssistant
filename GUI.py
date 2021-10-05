@@ -22,4 +22,4 @@ def display_output(output):
 
 output_label.pack()
 root.resizable(False, False)
-root.mainloop()
+mainloop = root.mainloop
