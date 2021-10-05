@@ -8,7 +8,7 @@ import smtplib
 import sys
 import random
 import GUI
-from threading import Thread
+
 
 print("Initializing Jarvis....")
 MASTER = "Harsha"
