@@ -7,10 +7,11 @@ import os
 import smtplib
 import sys
 import random
+import GUI
+from threading import Thread
 
 print("Initializing Jarvis....")
 MASTER = "Harsha"
-
 
 engine = pyttsx3.init('nsss')
 voices = engine.getProperty('voices')
@@ -29,6 +30,7 @@ def open_url(url):
     chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
     webbrowser.get(chrome_path).open(url)
 
+
 def search(search_query, search_engine):
     try:
         open_url(f'{search_engines[search_engine]}/search?q={search_query}')
@@ -37,8 +39,12 @@ def search(search_query, search_engine):
 
 
 def speak(text):
+    GUI.display_output(text)
     engine.say(text)
     engine.runAndWait()
+
+
+GUI.set_speak_command(speak)
 
 
 def wishMe():
@@ -84,73 +90,64 @@ def takeCommand():
 
 speak("Initializing Jarvis....")
 wishMe()
-query = takeCommand()
-
-# logic for executing basic tasks
-if 'wikipedia' in query.lower():
-    speak('Searching wikipedia....')
-    query = query.replace("wikipedia", "")
-    results = wikipedia.summary(query, sentences=2)
-    print(results)
-    speak(results)
-
-elif "what\'s up" in query or 'how are you' in query:
-    stMsgs = ['Just doing my thing!', 'I am fine!',
-              'Nice!', 'I am nice and full of energy']
-    speak(random.choice(stMsgs))
-
-elif 'open' in query.lower():
-    website = query.replace('open', '').strip().lower()
-    try:
-        open_url(popular_websites[website])
-    except IndexError: # If the website is unknown
-        print(f'Unknown website: {website}')
-        speak(f'Sorry, i don\'t know the website {website}')
-
-elif 'search' in query.lower():
-    search_query = query.split('for')[-1]
-    search_engine = query.split('for')[0].replace('search', '').strip().lower()
-    search(search_query, search_engine)
 
 
-elif 'email' in query:
-    speak('Who is the recipient? ')
-    recipient = takeCommand()
-
-    if 'me' in recipient:
-        try:
-            speak('What should I say? ')
-            content = takeCommand()
-
-            server = smtplib.SMTP('smtp.gmail.com', 587)
-            server.ehlo()
-            server.starttls()
-            server.login("Your_Username", 'Your_Password')
-            server.sendmail('Your_Username', "Recipient_Username", content)
-            server.close()
-            speak('Email sent!')
-
-        except:
-            speak('Sorry Sir! I am unable to send your message at this moment!')
-
-elif 'nothing' in query or 'abort' in query or 'stop' in query:
-    speak('okay')
-    speak('Bye Sir, have a good day.')
-    sys.exit()
-
-elif 'hello' in query:
-    speak('Hello Sir')
-
-elif 'bye' in query:
-    speak('Bye Sir, have a good day.')
-    sys.exit()
-
-elif 'play music' in query:
-    music_folder = 'Your_music_folder_path(absolute_path)'
-    music = ['music1', 'music2', 'music3', 'music4','music5']
-    random_music = music_folder + random.choice(music) + '.mp3'
-    os.system(random_music)
-
-    speak('Playing your request')
-
-speak('Next Command! Sir!')
+def main():
+    while True:
+        query = takeCommand()
+        # logic for executing basic tasks
+        if 'wikipedia' in query.lower():
+            speak('Searching wikipedia....')
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=2)
+            print(results)
+            speak(results)
+        elif "what\'s up" in query or 'how are you' in query:
+            stMsgs = ['Just doing my thing!', 'I am fine!',
+                      'Nice!', 'I am nice and full of energy']
+            speak(random.choice(stMsgs))
+        elif 'open' in query.lower():
+            website = query.replace('open', '').strip().lower()
+            try:
+                open_url(popular_websites[website])
+            except IndexError:  # If the website is unknown
+                print(f'Unknown website: {website}')
+                speak(f'Sorry, i don\'t know the website {website}')
+        elif 'search' in query.lower():
+            search_query = query.split('for')[-1]
+            search_engine = query.split('for')[0].replace('search', '').strip().lower()
+            search(search_query, search_engine)
+        elif 'email' in query:
+            speak('Who is the recipient? ')
+            recipient = takeCommand()
+            if 'me' in recipient:
+                try:
+                    speak('What should I say? ')
+                    content = takeCommand()
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.ehlo()
+                    server.starttls()
+                    server.login("Your_Username", 'Your_Password')
+                    server.sendmail('Your_Username', "Recipient_Username", content)
+                    server.close()
+                    speak('Email sent!')
+                except:
+                    speak('Sorry Sir! I am unable to send your message at this moment!')
+        elif 'nothing' in query or 'abort' in query or 'stop' in query:
+            speak('okay')
+            speak('Bye Sir, have a good day.')
+            sys.exit()
+        elif 'hello' in query:
+            speak('Hello Sir')
+        elif 'bye' in query:
+            speak('Bye Sir, have a good day.')
+            sys.exit()
+        elif 'play music' in query:
+            music_folder = 'Your_music_folder_path(absolute_path)'
+            music = ['music1', 'music2', 'music3', 'music4', 'music5']
+            random_music = music_folder + random.choice(music) + '.mp3'
+            os.system(random_music)
+            speak('Playing your request')
+        speak('Next Command! Sir!')
+Thread(target=main).start()
+GUI.mainloop()
