@@ -8,6 +8,7 @@ import smtplib
 import sys
 import random
 from pygame import mixer
+import GUI
 mixer.init()
 
 print("Initializing Jarvis....")
@@ -38,6 +39,7 @@ def search(search_query, search_engine):
 
 
 def speak(text):
+    GUI.display_output(text)
     engine.say(text)
     engine.runAndWait()
 
@@ -84,7 +86,7 @@ def takeCommand():
 
 speak("Initializing Jarvis....")
 wishMe()
-while True:
+def execute_the_command_said_by_user:
     query = takeCommand()
 
     # logic for executing basic tasks
@@ -163,3 +165,6 @@ while True:
         mixer.music.unpause()
 
     speak('Next Command! Sir!')
+
+GUI.set_speak_command(execute_the_command_said_by_user)
+GUI.mainloop()
