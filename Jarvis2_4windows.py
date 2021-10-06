@@ -39,7 +39,7 @@ def search(search_query, search_engine):
 
 
 def speak(text):
-    GUI.display_output(text)
+    GUI.speak(text)
     engine.say(text)
     engine.runAndWait()
 
