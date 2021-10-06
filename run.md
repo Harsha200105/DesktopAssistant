@@ -42,7 +42,7 @@ pip install pyttsx3
 - Open the command prompt/terminal and enter the below command to install `SpeechRecognition` 
   
 ```md
-pip install SpeechRecognition
+pip install pyaudio SpeechRecognition
 ```
 > Visit the [Speech Recognition documentation](https://pypi.org/project/SpeechRecognition/) to know more about this library.
 
