@@ -26,4 +26,3 @@ scrolled_frame.pack(fill=tk.BOTH)
 root.wm_title('Desktop assistant')
 root.resizable(False, False)
 mainloop = root.mainloop
-mainloop()
