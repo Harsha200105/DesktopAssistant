@@ -20,7 +20,7 @@ voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 
 
-def search_engine_selector():  # this funcition checks wich search engine is selected in config file.
+def search_engine_selector():  # this funcition checks which search engine is selected in config file.
     if config['DEFAULT']['search_engine'] == 'Google':
         return "https://www.google.com"
     elif config['DEFAULT']['search_engine'] == 'Bing':
@@ -212,6 +212,6 @@ def main():
 if os.path.isfile('./config.ini'): #Checks if config.ini exists.
     config = configparser.ConfigParser() #if exists loads library.
     config.read('config.ini') #and also the file.
-    main() #Then launchs the main program
+    main() #Then launches the main program
 else:
     print('You need a config.ini file. Check the documentation in the Github Repository.') #if it doesn't exist it drops an error message and exits.
