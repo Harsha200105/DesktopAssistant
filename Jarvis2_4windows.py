@@ -3,14 +3,15 @@ import random
 import smtplib
 import sys
 import webbrowser
-
 import pyttsx3
-import speech_recognition as sr
 import wikipedia
-from pygame import mixer
-
 import configparser
 import os
+import requests
+
+import speech_recognition as sr
+
+from pygame import mixer
 
 mixer.init()
 
@@ -18,8 +19,8 @@ engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 
-def search_engine_selector():
-    
+
+def search_engine_selector():  # this funcition checks wich search engine is selected in config file.
     if config['DEFAULT']['search_engine'] == 'Google':
         return "https://www.google.com"
     elif config['DEFAULT']['search_engine'] == 'Bing':
@@ -28,8 +29,14 @@ def search_engine_selector():
         return "https://www.duckduckgo.com"
     elif config['DEFAULT']['search_engine'] == 'Youtube':
         return "https://www.youtube.com"
-    else: 
-        return f"https://www.{config['DEFAULT']['search_engine'].lower()}.com"
+    else:  #If none of default ones selected it tries to use https://{config['DEFAULT']['search_engine'].lower()}.com as search engine. 
+        #if its a valid url, it returns it as the search engine.
+        try:
+            if requests.get(f"https://{config['DEFAULT']['search_engine'].lower()}.com", params= {'q':'example'}).status_code == 200:
+                return f"https://{config['DEFAULT']['search_engine'].lower()}.com"
+            
+            else: return "https://www.google.com"
+        except: return "https://www.google.com"
 
 def open_url(url):
         webbrowser.open(url)
@@ -202,9 +209,9 @@ def main():
 
         speak("Next Command! Sir!")
 
-if os.path.isfile('./config.ini'):
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-    main()
+if os.path.isfile('./config.ini'): #Checks if config.ini exists.
+    config = configparser.ConfigParser() #if exists loads library.
+    config.read('config.ini') #and also the file.
+    main() #Then launchs the main program
 else:
-    print('You need a config.ini file. Check the documentation in the Github Repository.')
+    print('You need a config.ini file. Check the documentation in the Github Repository.') #if it doesn't exist it drops an error message and exits.
