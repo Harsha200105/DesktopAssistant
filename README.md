@@ -7,9 +7,11 @@ The basic purpose of this is to make work easier as it re-directs you to various
 
 Steps to run the Assistant on your pc------------------(use python 3.9)
 
-step1. Installing all the necessary python module as mentioned in the requirements.txt file
+Step1. Installing all the necessary python module as mentioned in the requirements.txt file one by one as from the terminal pip install <module_name==version> 
+       or 
+      Install all  the required module all at once by using the command pip install -r requirements.txt 
         
-step2. For windows user run Jarvis2_4windows.py script. 
+Step2. For windows user run Jarvis2_4windows.py script. 
 
 Wow All done! Now give the command to jarvis.
 
