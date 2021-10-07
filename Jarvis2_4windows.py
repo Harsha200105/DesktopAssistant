@@ -2,15 +2,12 @@ import configparser
 import os
 
 import speech_recognition as sr
-from pygame import mixer
 
 from actions import search_engine_selector, speak, wishMe
 from commands import (command_bye, command_hello, command_mail,
                       command_nothing, command_open, command_pauseMusic,
                       command_playMusic, command_search, command_stopMusic,
                       command_unpauseMusic, command_whatsup, command_wikipedia)
-
-mixer.init()
 
 popular_websites = {
         "google": "https://www.google.com",
