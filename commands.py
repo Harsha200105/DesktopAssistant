@@ -91,7 +91,7 @@ def command_bye():
     sys.exit()
 
 
-def command_playMusic():
+def command_play_music():
     try:
         music_folder = config['DEFAULT']['musicPath']
         music = ("music1", "music2", "music3", "music4")
@@ -103,13 +103,13 @@ def command_playMusic():
         speak(e)
 
 
-def command_pauseMusic():
+def command_pause_music():
     mixer.music.pause()
 
 
-def command_stopMusic():
+def command_stop_music():
     mixer.music.stop()
 
 
-def command_unpauseMusic():
+def command_unpause_music():
     mixer.music.unpause()

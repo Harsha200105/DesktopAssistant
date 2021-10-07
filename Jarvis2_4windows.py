@@ -31,12 +31,26 @@ def main(search_engine, takeCommand, debug):
     while True:
         query = takeCommand().lower()
 
-        # logic for executing basic tasks
+        # logic for executing commands without arguments
+        phrases = {
+            "what's up": command_whatsup,
+            "nothing": command_nothing,
+            "abort": command_nothing,
+            "stop": command_nothing,
+            "hello": command_hello,
+            "bye": command_bye,
+            "play music": command_play_music,
+            "unpause": command_unpause_music,
+            "pause music": command_pause_music,
+            "stop music": command_stop_music,
+        }
+        for phrase, command in phrases.items():
+            if phrase in query:
+                command()
+
+        # logic for executing commands with arguments
         if "wikipedia" in query.lower():
             command_wikipedia(speak, debug, query)
-
-        elif "what's up" in query or "how are you" in query:
-            command_whatsup()
 
         elif "open" in query.lower():
             command_open(
@@ -52,27 +66,6 @@ def main(search_engine, takeCommand, debug):
 
         elif "mail" in query:
             command_mail(takeCommand)
-
-        elif "nothing" in query or "abort" in query or "stop" in query:
-            command_nothing()
-
-        elif "hello" in query:
-            command_hello()
-
-        elif "bye" in query:
-            command_bye()
-
-        elif "play music" in query:
-            command_playMusic()
-
-        elif "pause music" in query:
-            command_pauseMusic()
-
-        elif "stop music" in query:
-            command_stopMusic()
-
-        elif "unpause" in query:
-            command_unpauseMusic()
 
         speak("Next Command! Sir!")
 
