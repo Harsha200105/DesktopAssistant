@@ -20,7 +20,12 @@ voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 
 
+<<<<<<< HEAD
+# this funcition checks wich search engine is selected in config file.
+def search_engine_selector():
+=======
 def search_engine_selector():  # this funcition checks which search engine is selected in config file.
+>>>>>>> 05cd5b49df1eb083cc6e39fb9b246fd6630aa75f
     if config['DEFAULT']['search_engine'] == 'Google':
         return "https://www.google.com"
     elif config['DEFAULT']['search_engine'] == 'Bing':
@@ -29,40 +34,52 @@ def search_engine_selector():  # this funcition checks which search engine is se
         return "https://www.duckduckgo.com"
     elif config['DEFAULT']['search_engine'] == 'Youtube':
         return "https://www.youtube.com"
-    else:  #If none of default ones selected it tries to use https://{config['DEFAULT']['search_engine'].lower()}.com as search engine. 
-        #if its a valid url, it returns it as the search engine.
+    else:
+        # If none of default ones selected
         try:
-            if requests.get(f"https://{config['DEFAULT']['search_engine'].lower()}.com", params= {'q':'example'}).status_code == 200:
-                return f"https://{config['DEFAULT']['search_engine'].lower()}.com"
-            
-            else: return "https://www.google.com"
-        except: return "https://www.google.com"
+            if requests.get(
+                f"https://{config['DEFAULT']['search_engine'].lower()}.com",
+                params={'q': 'example'}
+            ).status_code == 200:
+                return (
+                    f"https://{config['DEFAULT']['search_engine'].lower()}.com"
+                )
+            else:
+                return "https://www.google.com"
+        except Exception as e:
+            print(e)
+            return "https://www.google.com"
+
 
 def open_url(url):
-        webbrowser.open(url)
-        chrome_path = r"open -a /Applications/Google\ Chrome.app %s"
-        webbrowser.get(chrome_path).open(url)
+    webbrowser.open(url)
+    chrome_path = r"open -a /Applications/Google\ Chrome.app %s"
+    webbrowser.get(chrome_path).open(url)
+
 
 def search(search_query, search_engine):
     open_url(f"{search_engine}/search?q={search_query}")
 
+
 def speak(text):
-        engine.say(text)
-        engine.runAndWait()
+    engine.say(text)
+    engine.runAndWait()
+
 
 def wishMe(MASTER):
-        hour = datetime.datetime.now().hour
-        # print(hour)
-        if hour >= 0 and hour < 12:
-            speak("Good Morning" + MASTER)
+    hour = datetime.datetime.now().hour
+    # print(hour)
+    if hour >= 0 and hour < 12:
+        speak("Good Morning" + MASTER)
 
-        elif hour >= 12 and hour < 18:
-            speak("Good Afternoon" + MASTER)
+    elif hour >= 12 and hour < 18:
+        speak("Good Afternoon" + MASTER)
 
-        else:
-            speak("Good Evening" + MASTER)
+    else:
+        speak("Good Evening" + MASTER)
 
-        # speak("Hey I am Jarvis. How may I help you")
+    # speak("Hey I am Jarvis. How may I help you")
+
 
 def main():
     MASTER = config['DEFAULT']['MASTER']
@@ -86,29 +103,29 @@ def main():
         def takeCommand():
             r = sr.Recognizer()
             with sr.Microphone() as source:
-                if debug == "True":print("Listening....")
-                else:pass
+                print("Listening....")
                 r.pause_threshold = 0.5
                 audio = r.listen(source)
 
             query = " "
             try:
-                if debug == "True":print("Recognizing....")
-                else:pass
+                print("Recognizing....")
                 query = r.recognize_google(audio, language="en-in")
-                if debug == "True":print("user said: " + query)
-                else:pass
+                print("user said: " + query)
 
             except sr.UnknownValueError:
-                if debug == "True":print("Sorry Could You please try again")
-                else:pass
+                if debug == "True":
+                    print("Sorry Could You please try again")
+                else:
+                    pass
                 speak("Sorry Could You please try again")
 
             except Exception as e:
                 if debug == "True":
                     print(e)
                     print("Say That Again Please")
-                else:pass
+                else:
+                    pass
                 query = None
 
             return query
@@ -123,8 +140,10 @@ def main():
             speak("Searching wikipedia....")
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences=2)
-            if debug == "True":print(results)
-            else:pass
+            if debug == "True":
+                print(results)
+            else:
+                pass
             speak(results)
 
         elif "what's up" in query or "how are you" in query:
@@ -141,15 +160,16 @@ def main():
             try:
                 open_url(popular_websites[website])
             except KeyError:  # If the website is unknown
-                if debug == "True":print(f"Unknown website: {website}")
-                else:pass
+                if debug == "True":
+                    print(f"Unknown website: {website}")
+                else:
+                    pass
                 speak(f"Sorry, i don't know the website {website}")
                 speak(f"¿Do you want me to search {website} in the web?")
                 if takeCommand() == "yes":
-                    search(website, search_engine )
+                    search(website, search_engine)
                 else:
                     pass
-
 
         elif "search" in query.lower():
             search_query = query.split("for")[-1]
@@ -164,15 +184,17 @@ def main():
                     speak("What should I say? ")
                     content = takeCommand()
 
-                    server = smtplib.SMTP(config['EMAIL']['server'], config['EMAIL']['port'])
+                    email = config['EMAIL']
+                    server = smtplib.SMTP(email['server'], email['port'])
                     server.ehlo()
                     server.starttls()
-                    server.login(config['EMAIL']['username'], config['EMAIL']['password'])
-                    server.sendmail(config['EMAIL']['username'], recipient, content)
+                    server.login(email['username'], email['password'])
+                    server.sendmail(email['username'], recipient, content)
                     server.close()
                     speak("Email sent!")
                 except Exception:
-                    speak("Sorry Sir! I am unable to send your message at this moment!")
+                    speak("Sorry Sir!")
+                    speak("I am unable to send your message at this moment!")
 
         elif "nothing" in query or "abort" in query or "stop" in query:
             speak("okay")
@@ -197,7 +219,6 @@ def main():
             except Exception as e:
                 speak(e)
 
-
         elif "pause music" in query:
             mixer.music.pause()
 
@@ -209,9 +230,21 @@ def main():
 
         speak("Next Command! Sir!")
 
+<<<<<<< HEAD
+
+if os.path.isfile('./config.ini'):  # Checks if config.ini exists.
+    config = configparser.ConfigParser()  # if exists loads library.
+    config.read('config.ini')  # and also the file.
+    main()  # Then launchs the main program
+else:
+    # if it doesn't exist it drops an error message and exits.
+    print('You need a config.ini file.')
+    print('Check the documentation in the Github Repository.')
+=======
 if os.path.isfile('./config.ini'): #Checks if config.ini exists.
     config = configparser.ConfigParser() #if exists loads library.
     config.read('config.ini') #and also the file.
     main() #Then launches the main program
 else:
     print('You need a config.ini file. Check the documentation in the Github Repository.') #if it doesn't exist it drops an error message and exits.
+>>>>>>> 05cd5b49df1eb083cc6e39fb9b246fd6630aa75f
