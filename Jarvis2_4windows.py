@@ -49,7 +49,7 @@ def speak(text):
     engine.runAndWait()
 
 
-def wishMe():
+def wish_me():
     hour = datetime.datetime.now().hour
     # print(hour)
     if hour >= 0 and hour < 12:
@@ -65,14 +65,14 @@ def wishMe():
 
 
 # This is where our programme begins....
-def takeCommand():
+def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 0.5
         audio = r.listen(source)
 
-    query = " "
+    query = ""
     try:
         print("Recognizing....")
         query = r.recognize_google(audio, language="en-in")
@@ -84,15 +84,14 @@ def takeCommand():
     except Exception as e:
         print(e)
         print("Say That Again Please")
-        query = None
 
     return query
 
 
 speak("Initializing Jarvis....")
-wishMe()
+wish_me()
 while True:
-    query = takeCommand()
+    query = take_command()
 
     # logic for executing basic tasks
     if "wikipedia" in query.lower():
@@ -103,13 +102,13 @@ while True:
         speak(results)
 
     elif "what's up" in query or "how are you" in query:
-        stMsgs = [
+        st_msgs = [
             "Just doing my thing!",
             "I am fine!",
             "Nice!",
             "I am nice and full of energy",
         ]
-        speak(random.choice(stMsgs))
+        speak(random.choice(st_msgs))
 
     elif "open" in query.lower():
         website = query.replace("open", "").strip().lower()
@@ -126,12 +125,12 @@ while True:
 
     elif "mail" in query:
         speak("Who is the recipient? ")
-        recipient = takeCommand()
+        recipient = take_command()
 
         if "me" in recipient:
             try:
                 speak("What should I say? ")
-                content = takeCommand()
+                content = take_command()
 
                 server = smtplib.SMTP("smtp.gmail.com", 587)
                 server.ehlo()

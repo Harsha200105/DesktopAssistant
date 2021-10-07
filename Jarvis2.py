@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+
 import datetime
+import getpass
 import os
 import random
 import smtplib
@@ -10,12 +13,12 @@ import speech_recognition as sr
 import wikipedia
 
 print("Initializing Jarvis....")
-MASTER = "Harsha"
-
+MASTER = getpass.getuser()
 
 engine = pyttsx3.init("nsss")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
+
 popular_websites = {
     "google": "https://www.google.com",
     "youtube": "https://www.youtube.com",
@@ -47,15 +50,17 @@ def speak(text):
     engine.runAndWait()
 
 
-def wishMe():
+def print_and_speak(text):
+    print(text)
+    speak(text)
+
+
+def wish_me():
     hour = datetime.datetime.now().hour
-    # print(hour)
-    if hour >= 0 and hour < 12:
+    if hour < 12:
         speak("Good Morning" + MASTER)
-
-    elif hour >= 12 and hour < 18:
+    elif hour < 18:
         speak("Good Afternoon" + MASTER)
-
     else:
         speak("Good Evening" + MASTER)
 
@@ -65,50 +70,53 @@ def wishMe():
 # This is where our programme begins....
 
 
-def takeCommand():
+def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 0.5
         audio = r.listen(source)
 
-    query = " "
+    print("Recognizing....")
+    query = ""
     try:
-        print("Recognizing....")
         query = r.recognize_google(audio, language="en-in")
-        print("user said: " + query)
+        print("User said: " + query)
 
     except sr.UnknownValueError:
-        print("Sorry Could You please try again")
+        print("Sorry could you please try again?")
 
     except Exception as e:
         print(e)
-        print("Say That Again Please")
-        query = None
+        print("Say that again, please?")
 
     return query
 
 
 speak("Initializing Jarvis....")
-wishMe()
-query = takeCommand()
+wish_me()
+query = take_command().lower()
 
 # logic for executing basic tasks
 if "wikipedia" in query.lower():
     speak("Searching wikipedia....")
     query = query.replace("wikipedia", "")
-    results = wikipedia.summary(query, sentences=2)
-    print(results)
-    speak(results)
+    print_and_speak(wikipedia.summary(query, sentences=2))
 
 elif "what's up" in query or "how are you" in query:
-    stMsgs = [
+    st_msgs = (
         "Just doing my thing!",
         "I am fine!",
         "Nice!",
         "I am nice and full of energy",
-    ]
-    speak(random.choice(stMsgs))
+    )
+    speak(random.choice(st_msgs))
+
+elif "date" in query:
+    print_and_speak(f"{datetime.datetime.now():%A, %B %d, %Y}")
+
+elif "time" in query:
+    print_and_speak(f"{datetime.datetime.now():%I %M %p}")
 
 elif "open" in query.lower():
     website = query.replace("open", "").strip().lower()
@@ -116,7 +124,7 @@ elif "open" in query.lower():
         open_url(popular_websites[website])
     except IndexError:  # If the website is unknown
         print(f"Unknown website: {website}")
-        speak(f"Sorry, i don't know the website {website}")
+        speak(f"Sorry, I don't know the website {website}")
 
 elif "search" in query.lower():
     search_query = query.split("for")[-1]
@@ -125,12 +133,12 @@ elif "search" in query.lower():
 
 elif "email" in query:
     speak("Who is the recipient? ")
-    recipient = takeCommand()
+    recipient = take_command()
 
     if "me" in recipient:
         try:
             speak("What should I say? ")
-            content = takeCommand()
+            content = take_command()
 
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.ehlo()
