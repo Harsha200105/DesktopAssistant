@@ -33,11 +33,7 @@ def main(search_engine, takeCommand, debug):
 
         # logic for executing basic tasks
         if "wikipedia" in query.lower():
-            command_wikipedia(
-                speak,
-                debug,
-                query
-            )
+            command_wikipedia(speak, debug, query)
 
         elif "what's up" in query or "how are you" in query:
             command_whatsup()
