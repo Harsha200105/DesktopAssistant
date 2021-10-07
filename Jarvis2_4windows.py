@@ -29,7 +29,7 @@ popular_websites = {
 
 def main(search_engine, takeCommand, debug):
     while True:
-        query = takeCommand()
+        query = takeCommand().lower()
 
         # logic for executing basic tasks
         if "wikipedia" in query.lower():
