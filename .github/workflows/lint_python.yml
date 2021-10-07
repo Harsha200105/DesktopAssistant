@@ -14,7 +14,8 @@ jobs:
       - run: codespell --ignore-words-list=ans
       - run: flake8 . --count --max-complexity=19 --max-line-length=88 --show-source --statistics
       - run: isort --check-only --profile black .
-      - run: pip install -r requirements.txt || pip install --editable . || true
+      - run: sudo apt-get install portaudio19-dev
+      - run: pip install -r requirements.txt
       - run: mkdir --parents --verbose .mypy_cache
       - run: mypy --ignore-missing-imports --install-types --non-interactive .
       - run: pytest . || true
