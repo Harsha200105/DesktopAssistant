@@ -22,6 +22,7 @@ popular_websites = {
     "youtube": "https://www.youtube.com",
     "wikipedia": "https://www.wikipedia.org",
     "amazon": "https://www.amazon.com",
+    "GitHub": "https://www.github.com",
 }
 search_engines = {
     "google": "https://www.google.com",
