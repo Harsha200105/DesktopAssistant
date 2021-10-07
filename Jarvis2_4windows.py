@@ -1,25 +1,14 @@
 import configparser
 import os
-import speech_recognition as sr
 
+import speech_recognition as sr
 from pygame import mixer
 
 from actions import search_engine_selector, speak, wishMe
-
-from commands import (
-    command_bye,
-    command_hello,
-    command_mail,
-    command_nothing,
-    command_pauseMusic,
-    command_playMusic,
-    command_stopMusic,
-    command_unpauseMusic,
-    command_whatsup,
-    command_wikipedia,
-    command_open,
-    command_search
-)
+from commands import (command_bye, command_hello, command_mail,
+                      command_nothing, command_open, command_pauseMusic,
+                      command_playMusic, command_search, command_stopMusic,
+                      command_unpauseMusic, command_whatsup, command_wikipedia)
 
 mixer.init()
 

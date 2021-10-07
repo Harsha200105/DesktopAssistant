@@ -1,9 +1,9 @@
-import wikipedia
+import configparser
+import random
 import smtplib
 import sys
-import random
-import configparser
 
+import wikipedia
 from pygame import mixer
 
 from actions import open_url, search, speak
