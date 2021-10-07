@@ -19,6 +19,13 @@ engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 
+popular_websites = {
+        "google": "https://www.google.com",
+        "youtube": "https://www.youtube.com",
+        "wikipedia": "https://www.wikipedia.org",
+        "amazon": "https://www.amazon.com",
+    }
+
 
 # this funcition checks which search engine is selected in config file.
 def search_engine_selector():
@@ -77,57 +84,7 @@ def wishMe(MASTER):
     # speak("Hey I am Jarvis. How may I help you")
 
 
-def main():
-    MASTER = config['DEFAULT']['MASTER']
-
-    popular_websites = {
-        "google": "https://www.google.com",
-        "youtube": "https://www.youtube.com",
-        "wikipedia": "https://www.wikipedia.org",
-        "amazon": "https://www.amazon.com",
-    }
-
-    search_engine = search_engine_selector()
-
-    debug = config['DEFAULT']['debug']
-
-    if debug == "True":
-        def takeCommand():
-            query = input("Command |--> ")
-            return query
-    else:
-        def takeCommand():
-            r = sr.Recognizer()
-            with sr.Microphone() as source:
-                print("Listening....")
-                r.pause_threshold = 0.5
-                audio = r.listen(source)
-
-            query = " "
-            try:
-                print("Recognizing....")
-                query = r.recognize_google(audio, language="en-in")
-                print("user said: " + query)
-
-            except sr.UnknownValueError:
-                if debug == "True":
-                    print("Sorry Could You please try again")
-                else:
-                    pass
-                speak("Sorry Could You please try again")
-
-            except Exception as e:
-                if debug == "True":
-                    print(e)
-                    print("Say That Again Please")
-                else:
-                    pass
-                query = None
-
-            return query
-
-    speak("Initializing Jarvis....")
-    wishMe(MASTER)
+def main(search_engine, takeCommand, debug):
     while True:
         query = takeCommand()
 
@@ -227,10 +184,57 @@ def main():
         speak("Next Command! Sir!")
 
 
+def run():
+    MASTER = config['DEFAULT']['MASTER']
+
+    search_engine = search_engine_selector()
+
+    debug = config['DEFAULT']['debug']
+
+    if debug == "True":
+        def takeCommand():
+            query = input("Command |--> ")
+            return query
+    else:
+        def takeCommand():
+            r = sr.Recognizer()
+            with sr.Microphone() as source:
+                print("Listening....")
+                r.pause_threshold = 0.5
+                audio = r.listen(source)
+
+            query = " "
+            try:
+                print("Recognizing....")
+                query = r.recognize_google(audio, language="en-in")
+                print("user said: " + query)
+
+            except sr.UnknownValueError:
+                if debug == "True":
+                    print("Sorry Could You please try again")
+                else:
+                    pass
+                speak("Sorry Could You please try again")
+
+            except Exception as e:
+                if debug == "True":
+                    print(e)
+                    print("Say That Again Please")
+                else:
+                    pass
+                query = None
+
+            return query
+
+    speak("Initializing Jarvis....")
+    wishMe(MASTER)
+    main(search_engine, takeCommand, debug)
+
+
 if os.path.isfile('./config.ini'):  # Checks if config.ini exists.
     config = configparser.ConfigParser()  # if exists loads library.
     config.read('config.ini')  # and also the file.
-    main()  # Then it launches the main program
+    run()  # Then it launches the main program
 else:
     # if it doesn't exist it drops an error message and exits.
     print('You need a config.ini file.')
