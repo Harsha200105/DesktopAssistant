@@ -73,7 +73,7 @@ def main(search_engine, takeCommand, debug):
             command_pauseMusic()
 
         elif "stop music" in query:
-            command_stopMusic
+            command_stopMusic()
 
         elif "unpause" in query:
             command_unpauseMusic()
