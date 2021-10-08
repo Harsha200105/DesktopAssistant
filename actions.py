@@ -50,7 +50,7 @@ def speak(text):
     engine.runAndWait()
 
 
-def wishMe(master):
+def wish_me(master):
     hour = datetime.datetime.now().hour
     # print(hour)
     if hour >= 0 and hour < 12:

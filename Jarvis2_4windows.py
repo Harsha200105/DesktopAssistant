@@ -3,7 +3,7 @@ import os
 
 import speech_recognition as sr
 
-from actions import search_engine_selector, speak, wishMe
+from actions import search_engine_selector, speak, wish_me
 from commands import (
     command_bye,
     command_hello,
@@ -24,13 +24,13 @@ popular_websites = {
     "youtube": "https://www.youtube.com",
     "wikipedia": "https://www.wikipedia.org",
     "amazon": "https://www.amazon.com",
-    "GitHub": "https://www.github.com",
+    "github": "https://www.github.com",
 }
 
 
-def main(search_engine, takeCommand, debug):
+def main(search_engine, take_command, debug):
     while True:
-        query = takeCommand().lower()
+        query = take_command().lower()
 
         # logic for executing commands without arguments
         phrases = {
@@ -59,14 +59,14 @@ def main(search_engine, takeCommand, debug):
                 popular_websites,
                 debug,
                 search_engine,
-                takeCommand
+                take_command
             )
 
         elif "search" in query.lower():
             command_search(query, search_engine)
 
         elif "mail" in query:
-            command_mail(takeCommand)
+            command_mail(take_command)
 
         speak("Next Command! Sir!")
 
@@ -79,11 +79,10 @@ def run():
     debug = config['DEFAULT']['debug']
 
     if debug == "True":
-        def takeCommand():
-            query = input("Command |--> ")
-            return query
+        def take_command():
+            return input("Command |--> ")
     else:
-        def takeCommand():
+        def take_command():
             r = sr.Recognizer()
             with sr.Microphone() as source:
                 print("Listening....")
@@ -109,13 +108,12 @@ def run():
                     print("Say That Again Please")
                 else:
                     pass
-                query = None
 
-            return query
+            return None
 
     speak(text="Initializing Jarvis....")
-    wishMe(master)
-    main(search_engine, takeCommand, debug)
+    wish_me(master)
+    main(search_engine, take_command, debug)
 
 
 if os.path.isfile('./config.ini'):  # Checks if config.ini exists.

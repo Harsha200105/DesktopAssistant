@@ -24,16 +24,16 @@ def command_wikipedia(debug, query):
 
 
 def command_whatsup():
-    stMsgs = [
+    st_msgs = [
         "Just doing my thing!",
         "I am fine!",
         "Nice!",
         "I am nice and full of energy",
     ]
-    speak(random.choice(stMsgs))
+    speak(random.choice(st_msgs))
 
 
-def command_open(query, popular_websites, debug, search_engine, takeCommand):
+def command_open(query, popular_websites, debug, search_engine, take_command):
     website = query.replace("open", "").strip().lower()
     try:
         open_url(popular_websites[website])
@@ -44,7 +44,7 @@ def command_open(query, popular_websites, debug, search_engine, takeCommand):
             pass
         speak(f"Sorry, i don't know the website {website}")
         speak(f"¿Do you want me to search {website} in the web?")
-        if takeCommand() == "yes":
+        if take_command() == "yes":
             search(website, search_engine)
         else:
             pass
@@ -55,13 +55,13 @@ def command_search(query, search_engine):
     search(search_query, search_engine)
 
 
-def command_mail(takeCommand):
+def command_mail(take_command):
     speak("Who is the recipient? ")
-    recipient = takeCommand()
+    recipient = take_command()
 
     try:
         speak("What should I say? ")
-        content = takeCommand()
+        content = take_command()
 
         email = config['EMAIL']
         server = smtplib.SMTP(email['server'], email['port'])
