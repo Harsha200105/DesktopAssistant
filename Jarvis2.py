@@ -3,6 +3,7 @@
 import datetime
 import getpass
 import os
+import platform
 import random
 import smtplib
 import sys
@@ -13,9 +14,11 @@ import speech_recognition as sr
 import wikipedia
 
 print("Initializing Jarvis....")
-MASTER = getpass.getuser()
+MASTER = getpass.getuser() or "Harsha"
 
-engine = pyttsx3.init("nsss")
+# Set driver name by OS: https://pyttsx3.readthedocs.io/en/latest/engine.html
+driver = {"Darwin": "nsss", "Windows": "sapi5"}.get(platform.system(), "espeak")
+engine = pyttsx3.init(driver)
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 
