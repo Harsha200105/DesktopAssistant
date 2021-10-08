@@ -3,25 +3,14 @@
 """Implementation of the scrollable frame widget."""
 
 import sys
+import tkinter as tk
 
 try:
     # Python 3
-    import tkinter as tk
-except (ImportError):
-    # Python 2
-    import Tkinter as tk
-
-try:
-    try:
-        # Python 3
-        import tkinter.ttk as ttk
-    except (ImportError):
-        # Python 2
-        import ttk
-except (ImportError):
+    import tkinter.ttk as ttk
+except ImportError:
     # Can't provide ttk's Scrollbar
     pass
-
 
 __all__ = ["ScrolledFrame"]
 
@@ -68,7 +57,7 @@ class ScrolledFrame(tk.Frame):
 
             if not scrollbars:
                 scrollbars = self._DEFAULT_SCROLLBARS
-            elif not scrollbars in self._VALID_SCROLLBARS:
+            elif scrollbars not in self._VALID_SCROLLBARS:
                 raise ValueError("scrollbars parameter must be one of "
                                  "'vertical', 'horizontal', 'both', or "
                                  "'neither'")
@@ -78,17 +67,17 @@ class ScrolledFrame(tk.Frame):
         # Whether to use ttk widgets if available
         if "use_ttk" in kw:
             if ttk and kw["use_ttk"]:
-                Scrollbar = ttk.Scrollbar
+                scrollbar = ttk.Scrollbar
             else:
-                Scrollbar = tk.Scrollbar
+                scrollbar = tk.Scrollbar
             del kw["use_ttk"]
         else:
-            Scrollbar = tk.Scrollbar
+            scrollbar = tk.Scrollbar
 
         # Default to a 1px sunken border
-        if not "borderwidth" in kw:
+        if "borderwidth" not in kw:
             kw["borderwidth"] = 1
-        if not "relief" in kw:
+        if "relief" not in kw:
             kw["relief"] = "sunken"
 
         # Set up the grid
@@ -109,10 +98,10 @@ class ScrolledFrame(tk.Frame):
         c.bind("<Configure>", self._resize_interior)
 
         # Scrollbars
-        xs = self._x_scrollbar = Scrollbar(self,
+        xs = self._x_scrollbar = scrollbar(self,
                                            orient="horizontal",
                                            command=c.xview)
-        ys = self._y_scrollbar = Scrollbar(self,
+        ys = self._y_scrollbar = scrollbar(self,
                                            orient="vertical",
                                            command=c.yview)
         c.configure(xscrollcommand=xs.set, yscrollcommand=ys.set)
