@@ -148,8 +148,9 @@ elif "email" in query:
             server.close()
             speak("Email sent!")
         except Exception:
-            speak("Sorry Sir!")
-            speak("I am unable to send your message at this moment!")
+            speak(
+                "Sorry, Sir!  I am unable to send your message at this moment!"
+            )
 
 elif "nothing" in query or "abort" in query or "stop" in query:
     speak("okay")
