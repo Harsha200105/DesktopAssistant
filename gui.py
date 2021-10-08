@@ -1,10 +1,9 @@
 import tkinter as tk
 
-from tkscrolledframe import ScrolledFrame
-
 root = tk.Tk()
-scrolled_frame = ScrolledFrame(master=root)
-main_frame = scrolled_frame.display_widget(tk.Frame)
+main_frame = tk.Frame(master=root)
+chat_listbox = tk.Listbox(master=main_frame, height=200, width=50)
+scroll_bar = tk.Scrollbar(master=main_frame)
 speak_button = tk.Button(master=root, text='Speak', command=lambda: None)
 
 
@@ -15,15 +14,16 @@ def set_speak_command(command):
 speak_button.pack(side=tk.LEFT, anchor=tk.SW)
 
 
-def conversation_label(text):
-    tk.Label(master=main_frame, text=text).pack()
-
-
 def speak(text):
-    conversation_label(f'Assistant: {text}')
+    chat_listbox.insert('end', f'Assistant: {text}')
+    root.geometry('700x500')
 
 
-scrolled_frame.pack(fill=tk.BOTH)
+chat_listbox.pack(fill=tk.Y, side=tk.LEFT)
+scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
+scroll_bar.configure(command=chat_listbox.yview)
+chat_listbox.configure(yscrollcommand=scroll_bar.set)
+main_frame.pack(fill=tk.BOTH)
 root.wm_title('Desktop assistant')
 root.resizable(False, False)
 mainloop = root.mainloop
