@@ -92,6 +92,8 @@ def takeCommand():
 
 speak("Initializing Jarvis....")
 wishMe()
+
+
 def execute_the_command_said_by_user():
     query = takeCommand()
 
@@ -174,5 +176,7 @@ def execute_the_command_said_by_user():
         mixer.music.unpause()
 
     speak("Next Command! Sir!")
+
+
 gui.set_speak_command(execute_the_command_said_by_user)
 gui.mainloop()
