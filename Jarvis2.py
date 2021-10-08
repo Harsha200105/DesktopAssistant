@@ -93,6 +93,8 @@ def takeCommand():
 
 speak("Initializing Jarvis....")
 wishMe()
+
+
 def execute_the_command_said_by_user():
     query = takeCommand()
     # logic for executing basic tasks
@@ -153,5 +155,7 @@ def execute_the_command_said_by_user():
         os.system(random_music)
         speak("Playing your request")
     speak("Next Command! Sir!")
+
+
 gui.set_speak_command(execute_the_command_said_by_user)
 gui.mainloop()
