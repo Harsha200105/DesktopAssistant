@@ -72,7 +72,7 @@ def main(search_engine, takeCommand, debug):
 
 
 def run():
-    master = config['DEFAULT']['MASTER']
+    master = config['DEFAULT']['master']
 
     search_engine = search_engine_selector(config)
 
