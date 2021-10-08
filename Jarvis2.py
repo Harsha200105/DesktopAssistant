@@ -7,7 +7,7 @@ import os
 import smtplib
 import sys
 import random
-import GUI
+import gui
 
 
 print("Initializing Jarvis....")
@@ -39,7 +39,7 @@ def search(search_query, search_engine):
 
 
 def speak(text):
-    GUI.speak(text)
+    gui.speak(text)
     engine.say(text)
     engine.runAndWait()
 
@@ -147,5 +147,5 @@ def execute_the_command_said_by_user():
     speak('Next Command! Sir!')
 
 
-GUI.set_speak_command(execute_the_command_said_by_user)
-GUI.mainloop()
+gui.set_speak_command(execute_the_command_said_by_user)
+gui.mainloop()
