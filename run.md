@@ -58,9 +58,9 @@ pip install pygame
 
 # Suitable IDE for running this program
 
-- Desktop Assistant can be run in the following Code editoe IDEs.
+- Desktop Assistant can be run in the following code editor IDEs.
   - [Pycharm](https://www.jetbrains.com/help/pycharm/installation-guide.html) 
-  - [VS Code](https://code.visualstudio.com/docs)  
+  - [Visual Studio Code](https://code.visualstudio.com/docs)  
   - [Jupyter-lab](https://jupyterlab.readthedocs.io/en/latest/) 
   - [Replit](https://docs.replit.com/) 
 
