@@ -9,6 +9,8 @@ import speech_recognition as sr
 import wikipedia
 from pygame import mixer
 
+import gui
+
 mixer.init()
 
 print("Initializing Jarvis....")
@@ -45,6 +47,7 @@ def search(search_query, search_engine):
 
 
 def speak(text):
+    gui.speak(text)
     engine.say(text)
     engine.runAndWait()
 
@@ -90,7 +93,9 @@ def take_command():
 
 speak("Initializing Jarvis....")
 wish_me()
-while True:
+
+
+def execute_the_command_said_by_user():
     query = take_command()
 
     # logic for executing basic tasks
@@ -172,3 +177,7 @@ while True:
         mixer.music.unpause()
 
     speak("Next Command! Sir!")
+
+
+gui.set_speak_command(execute_the_command_said_by_user)
+gui.mainloop()
