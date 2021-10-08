@@ -96,7 +96,6 @@ wishMe()
 
 def execute_the_command_said_by_user():
     query = takeCommand()
-
     # logic for executing basic tasks
     if "wikipedia" in query.lower():
         speak("Searching wikipedia....")
@@ -104,7 +103,6 @@ def execute_the_command_said_by_user():
         results = wikipedia.summary(query, sentences=2)
         print(results)
         speak(results)
-
     elif "what's up" in query or "how are you" in query:
         stMsgs = [
             "Just doing my thing!",
@@ -113,7 +111,6 @@ def execute_the_command_said_by_user():
             "I am nice and full of energy",
         ]
         speak(random.choice(stMsgs))
-
     elif "open" in query.lower():
         website = query.replace("open", "").strip().lower()
         try:
@@ -121,21 +118,17 @@ def execute_the_command_said_by_user():
         except IndexError:  # If the website is unknown
             print(f"Unknown website: {website}")
             speak(f"Sorry, i don't know the website {website}")
-
     elif "search" in query.lower():
         search_query = query.split("for")[-1]
         search_engine = query.split("for")[0].replace("search", "").strip().lower()
         search(search_query, search_engine)
-
     elif "mail" in query:
         speak("Who is the recipient? ")
         recipient = takeCommand()
-
         if "me" in recipient:
             try:
                 speak("What should I say? ")
                 content = takeCommand()
-
                 server = smtplib.SMTP("smtp.gmail.com", 587)
                 server.ehlo()
                 server.starttls()
@@ -145,19 +138,15 @@ def execute_the_command_said_by_user():
                 speak("Email sent!")
             except Exception:
                 speak("Sorry Sir! I am unable to send your message at this moment!")
-
     elif "nothing" in query or "abort" in query or "stop" in query:
         speak("okay")
         speak("Bye Sir, have a good day.")
         sys.exit()
-
     elif "hello" in query:
         speak("Hello Sir")
-
     elif "bye" in query:
         speak("Bye Sir, have a good day.")
         sys.exit()
-
     elif "play music" in query:
         music_folder = "Your_music_folder_path(absolute_path)"
         music = ("music1", "music2", "music3", "music4")
@@ -165,16 +154,12 @@ def execute_the_command_said_by_user():
         speak("Playing your request")
         mixer.music.load(random_music)
         mixer.music.play()
-
     elif "pause music" in query:
         mixer.music.pause()
-
     elif "stop music" in query:
         mixer.music.stop()
-
     elif "unpause" in query:
         mixer.music.unpause()
-
     speak("Next Command! Sir!")
 
 
