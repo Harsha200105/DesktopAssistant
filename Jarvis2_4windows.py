@@ -20,11 +20,12 @@ from commands import (
 )
 
 popular_websites = {
-        "google": "https://www.google.com",
-        "youtube": "https://www.youtube.com",
-        "wikipedia": "https://www.wikipedia.org",
-        "amazon": "https://www.amazon.com",
-    }
+    "google": "https://www.google.com",
+    "youtube": "https://www.youtube.com",
+    "wikipedia": "https://www.wikipedia.org",
+    "amazon": "https://www.amazon.com",
+    "GitHub": "https://www.github.com",
+}
 
 
 def main(search_engine, takeCommand, debug):
@@ -125,3 +126,4 @@ else:
     # if it doesn't exist it drops an error message and exits.
     print('You need a config.ini file.')
     print('Check the documentation in the Github Repository.')
+
