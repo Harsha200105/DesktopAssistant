@@ -109,7 +109,7 @@ def run():
                 else:
                     pass
 
-            return None
+            return
 
     speak(text="Initializing Jarvis....")
     wish_me(master)
