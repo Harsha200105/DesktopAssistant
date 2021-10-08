@@ -13,8 +13,7 @@ jobs:
       - run: black --check . || true
       - run: codespell --ignore-words-list=ans
       - run: flake8 . --count --max-complexity=19 --max-line-length=88 --show-source --statistics
-      - run: python3 -m pip install isort
-      - run: isort --profile black .
+      - run: isort --check-only --profile black .
       - run: pip install -r requirements.txt || pip install --editable . || true
       - run: mkdir --parents --verbose .mypy_cache
       - run: mypy --ignore-missing-imports --install-types --non-interactive .
