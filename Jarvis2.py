@@ -98,7 +98,7 @@ def execute_the_command_said_by_user():
         results = wikipedia.summary(query, sentences=2)
         print(results)
         speak(results)
-    elif "what\'s up" in query or 'how are you' in query:
+    elif "what's up" in query or 'how are you' in query:
         stMsgs = ['Just doing my thing!', 'I am fine!',
                   'Nice!', 'I am nice and full of energy']
         speak(random.choice(stMsgs))
