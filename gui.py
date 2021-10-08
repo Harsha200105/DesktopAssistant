@@ -1,4 +1,5 @@
 import tkinter as tk
+
 from tkscrolledframe import ScrolledFrame
 
 root = tk.Tk()
