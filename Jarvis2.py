@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#! usr/bin/env python3
 
 import datetime
 import getpass
@@ -7,6 +7,7 @@ import random
 import smtplib
 import sys
 import webbrowser
+from pygame import mixer
 
 import pyttsx3
 import speech_recognition as sr
@@ -31,6 +32,15 @@ search_engines = {
     "bing": "https://www.bing.com",
 }
 
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+    pass
+
+
+def print_and_speak(text):
+    print(text)
+    speak(text)
 
 def open_url(url):
     webbrowser.open(url)
@@ -38,21 +48,11 @@ def open_url(url):
     webbrowser.get(chrome_path).open(url)
 
 
-def search(search_query, search_engine):
+def search(search_query, search_engine = search_engines["google"]):
     try:
         open_url(f"{search_engines[search_engine]}/search?q={search_query}")
-    except IndexError:
-        open_url(f"https://www.google.com/search?q={search_query}")
-
-
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
-
-
-def print_and_speak(text):
-    print(text)
-    speak(text)
+    except :
+        print_and_speak("An Error has occured.")
 
 
 def wish_me():
@@ -91,7 +91,26 @@ def take_command():
         print("Say that again, please?")
 
     return query
-
+    
+def add_music(path) :
+	music = []
+	os.path.normpath(path)
+	for item in os.listdir(path) :
+		try :
+			if os.path.isdir(os.path.join(path, item)) :
+				music.extend(add_music(os.path.join(path, item)))
+			elif os.path.isfile(os.path.join(path, item)) :
+				extensions = ["mp3", "ogg", "wav", "wma", "aac", "m4a", "flac"]
+				file_ext = i.split(".")[-1]
+				if file_ext in extensions :
+					music.append(os.path.join(path, i))
+		except :
+			print(f"ignored {item}")
+	return music
+	
+# Music Folder
+music_folder = "Your_music_folder_path(absolute_path)"
+music = add_music(music_folder)    
 
 speak("Initializing Jarvis....")
 wish_me()
@@ -129,7 +148,10 @@ elif "open" in query.lower():
 elif "search" in query.lower():
     search_query = query.split("for")[-1]
     search_engine = query.split("for")[0].replace("search", "").strip().lower()
-    search(search_query, search_engine)
+    if search_engine in search_engines : 
+    	search(search_query, search_engine)
+    else :
+    	search(search_query)
 
 elif "email" in query:
     speak("Who is the recipient? ")
@@ -163,11 +185,15 @@ elif "bye" in query:
     sys.exit()
 
 elif "play music" in query:
-    music_folder = "Your_music_folder_path(absolute_path)"
-    music = ("music1", "music2", "music3", "music4", "music5")
-    random_music = music_folder + random.choice(music) + ".mp3"
-    os.system(random_music)
-
     speak("Playing your request")
+	mixer.init()
+	try : 
+		mixer.music.load(random.choice(music))
+		mixer.music.set_volume(1.0)
+		mixer.music.play()
+	except :
+		print("Format Not Supported")
+
+
 
 speak("Next Command! Sir!")
