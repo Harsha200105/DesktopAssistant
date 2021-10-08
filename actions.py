@@ -50,16 +50,16 @@ def speak(text):
     engine.runAndWait()
 
 
-def wishMe(MASTER):
+def wishMe(master):
     hour = datetime.datetime.now().hour
     # print(hour)
     if hour >= 0 and hour < 12:
-        speak("Good Morning" + MASTER)
+        speak("Good Morning" + master)
 
     elif hour >= 12 and hour < 18:
-        speak("Good Afternoon" + MASTER)
+        speak("Good Afternoon" + master)
 
     else:
-        speak("Good Evening" + MASTER)
+        speak("Good Evening" + master)
 
     # speak("Hey I am Jarvis. How may I help you")

@@ -72,7 +72,7 @@ def main(search_engine, takeCommand, debug):
 
 
 def run():
-    MASTER = config['DEFAULT']['MASTER']
+    master = config['DEFAULT']['MASTER']
 
     search_engine = search_engine_selector(config)
 
@@ -114,7 +114,7 @@ def run():
             return query
 
     speak(text="Initializing Jarvis....")
-    wishMe(MASTER)
+    wishMe(master)
     main(search_engine, takeCommand, debug)
 
 
@@ -126,4 +126,3 @@ else:
     # if it doesn't exist it drops an error message and exits.
     print('You need a config.ini file.')
     print('Check the documentation in the Github Repository.')
-

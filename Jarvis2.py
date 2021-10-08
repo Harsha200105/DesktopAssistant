@@ -13,7 +13,7 @@ import speech_recognition as sr
 import wikipedia
 
 print("Initializing Jarvis....")
-MASTER = getpass.getuser()
+master = getpass.getuser()
 
 engine = pyttsx3.init("nsss")
 voices = engine.getProperty("voices")
@@ -58,11 +58,11 @@ def print_and_speak(text):
 def wish_me():
     hour = datetime.datetime.now().hour
     if hour < 12:
-        speak("Good Morning" + MASTER)
+        speak("Good Morning" + master)
     elif hour < 18:
-        speak("Good Afternoon" + MASTER)
+        speak("Good Afternoon" + master)
     else:
-        speak("Good Evening" + MASTER)
+        speak("Good Evening" + master)
 
     # speak("Hey I am Jarvis. How may I help you")
 
@@ -148,7 +148,8 @@ elif "email" in query:
             server.close()
             speak("Email sent!")
         except Exception:
-            speak("Sorry Sir! I am unable to send your message at this moment!")
+            speak("Sorry Sir!")
+            speak("I am unable to send your message at this moment!")
 
 elif "nothing" in query or "abort" in query or "stop" in query:
     speak("okay")
