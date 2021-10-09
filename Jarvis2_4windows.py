@@ -3,7 +3,14 @@ import os
 
 import speech_recognition as sr
 
-from actions import search_engine_selector, speak, wish_me
+from actions import (
+    change_volume,
+    change_rate,
+    change_voice,
+    search_engine_selector,
+    speak,
+    wish_me,
+)
 from commands import (
     command_bye,
     command_hello,
@@ -30,45 +37,57 @@ popular_websites = {
 
 def main(search_engine, take_command, debug):
     while True:
-        query = take_command().lower()
+        try:
+            query = take_command()
 
-        # logic for executing commands without arguments
-        phrases = {
-            "what's up": command_whatsup,
-            "nothing": command_nothing,
-            "abort": command_nothing,
-            "stop": command_nothing,
-            "hello": command_hello,
-            "bye": command_bye,
-            "play music": command_play_music,
-            "unpause": command_unpause_music,
-            "pause music": command_pause_music,
-            "stop music": command_stop_music,
-        }
-        for phrase, command in phrases.items():
-            if phrase in query:
-                command()
+            # logic for executing commands without arguments
+            phrases = {
+                "what's up": command_whatsup,
+                "nothing": command_nothing,
+                "abort": command_nothing,
+                "stop": command_nothing,
+                "hello": command_hello,
+                "bye": command_bye,
+                "play music": command_play_music,
+                "unpause": command_unpause_music,
+                "pause music": command_pause_music,
+                "stop music": command_stop_music
+            }
+            for phrase, command in phrases.items():
+                if phrase in query:
+                    command()
 
-        # logic for executing commands with arguments
-        if "wikipedia" in query.lower():
-            command_wikipedia(speak, debug, query)
+            # logic for executing commands with arguments
+            if "wikipedia" in query:
+                command_wikipedia(speak, debug, query)
 
-        elif "open" in query.lower():
-            command_open(
-                query,
-                popular_websites,
-                debug,
-                search_engine,
-                take_command
-            )
+            elif "open" in query:
+                command_open(
+                    query,
+                    popular_websites,
+                    debug,
+                    search_engine,
+                    take_command
+                )
 
-        elif "search" in query.lower():
-            command_search(query, search_engine)
+            elif "search" in query:
+                command_search(query, search_engine)
 
-        elif "mail" in query:
-            command_mail(take_command)
+            elif "mail" in query:
+                command_mail(take_command)
 
-        speak("Next Command! Sir!")
+            elif "change rate" in query:
+                change_rate(query, take_command)
+
+            elif "change voice" in query.lower():
+                change_voice(query, take_command)
+
+            elif "change volume" in query.lower():
+                change_volume(query, take_command)
+
+            speak("Next Command! Sir!")
+        except Exception:
+            pass
 
 
 def run():
@@ -109,7 +128,7 @@ def run():
                 else:
                     pass
 
-            return
+            return query
 
     speak(text="Initializing Jarvis....")
     wish_me(master)
