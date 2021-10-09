@@ -1,34 +1,15 @@
 import configparser
 import os
 
-import speech_recognition as sr
-
 import gui
-
-
-from actions import (
-    change_rate,
-    change_voice,
-    change_volume,
-    search_engine_selector,
-    speak,
-    wish_me,
-    set_gui_speak
-)
-from commands import (
-    command_bye,
-    command_hello,
-    command_mail,
-    command_nothing,
-    command_open,
-    command_pause_music,
-    command_play_music,
-    command_search,
-    command_stop_music,
-    command_unpause_music,
-    command_whatsup,
-    command_wikipedia,
-)
+import speech_recognition as sr
+from actions import (change_rate, change_voice, change_volume,
+                     search_engine_selector, set_gui_speak, speak, wish_me)
+from commands import (command_bye, command_hello, command_mail,
+                      command_nothing, command_open, command_pause_music,
+                      command_play_music, command_search, command_stop_music,
+                      command_unpause_music, command_whatsup,
+                      command_wikipedia)
 
 popular_websites = {
     "google": "https://www.google.com",
