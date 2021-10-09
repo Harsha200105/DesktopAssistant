@@ -4,9 +4,9 @@ import os
 import speech_recognition as sr
 
 from actions import (
-    change_volume,
     change_rate,
     change_voice,
+    change_volume,
     search_engine_selector,
     speak,
     wish_me,

@@ -1,9 +1,9 @@
+import configparser
 import datetime
 import webbrowser
 
 import pyttsx3
 import requests
-import configparser
 
 
 def search_engine_selector(config):
