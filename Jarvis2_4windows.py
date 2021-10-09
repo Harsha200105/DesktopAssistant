@@ -6,7 +6,6 @@ import speech_recognition as sr
 import gui
 
 
-mixer.init()
 from actions import (
     change_rate,
     change_voice,
