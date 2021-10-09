@@ -15,7 +15,7 @@ import wikipedia
 import gui
 
 print("Initializing Jarvis....")
-MASTER = getpass.getuser()
+master = getpass.getuser()
 
 engine = pyttsx3.init("nsss")
 voices = engine.getProperty("voices")
@@ -61,11 +61,11 @@ def print_and_speak(text):
 def wish_me():
     hour = datetime.datetime.now().hour
     if hour < 12:
-        speak("Good Morning" + MASTER)
+        speak("Good Morning" + master)
     elif hour < 18:
-        speak("Good Afternoon" + MASTER)
+        speak("Good Afternoon" + master)
     else:
-        speak("Good Evening" + MASTER)
+        speak("Good Evening" + master)
 
     # speak("Hey I am Jarvis. How may I help you")
 
