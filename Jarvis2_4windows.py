@@ -13,6 +13,7 @@ from actions import (
     search_engine_selector,
     speak,
     wish_me,
+    set_gui_speak
 )
 from commands import (
     command_bye,
@@ -89,6 +90,7 @@ def main(search_engine, take_command, debug):
 
         speak("Next Command! Sir!")
     gui.set_speak_command(execute_the_command_said_by_user)
+    set_gui_speak(gui.speak)
     gui.mainloop()
 
 
