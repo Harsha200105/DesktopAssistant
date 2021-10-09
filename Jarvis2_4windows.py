@@ -92,12 +92,6 @@ def main(search_engine, take_command, debug):
     gui.mainloop()
 
 
-def speak(text):
-    gui.speak(text)
-    engine.say(text)
-    engine.runAndWait()
-
-
 def run():
     master = config['DEFAULT']['master']
 
