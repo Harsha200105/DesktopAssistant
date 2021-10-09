@@ -43,7 +43,9 @@ def open_url(url):
 def search(search_query, search_engine):
     open_url(f"{search_engine}/search?q={search_query}")
 
-gui_speak = lambda text: None
+
+def gui_speak(text):
+    pass
 
 
 def set_gui_speak(command):
