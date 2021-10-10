@@ -15,7 +15,7 @@ import wikipedia
 import gui
 
 print("Initializing Jarvis....")
-MASTER = getpass.getuser() or "Harsha"
+master = getpass.getuser() or "Harsha"
 
 engine = pyttsx3.init()
 voices = engine.getProperty("voices")
