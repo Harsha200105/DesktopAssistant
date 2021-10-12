@@ -1,7 +1,7 @@
 import configparser
 import os
-import requests
 
+import requests
 import speech_recognition as sr
 
 from actions import (
