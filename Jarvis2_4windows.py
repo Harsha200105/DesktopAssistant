@@ -145,4 +145,4 @@ else:
         print('You need a config.ini file.')
         print('Check the documentation in the Github Repository.')
     if status_code != 200:
-        print("I couldnt stablish an internet connection.")
+        print("I couldn't stablish an internet connection.")
