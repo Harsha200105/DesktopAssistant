@@ -83,7 +83,7 @@ def change_rate(query, take_command):
 def change_voice(query, take_command):
     try:
         voice = query.split('to')[-1]
-        if voice == "male":
+        if voice == " male":
             engine.setProperty('voice', voices[0].id)
             speak("¿Do you want to keep this config?")
             if take_command() == "yes":
@@ -93,7 +93,7 @@ def change_voice(query, take_command):
             else:
                 pass
 
-        elif voice == "female":
+        elif voice == " female":
             engine.setProperty('voice', voices[1].id)
             speak("¿Do you want to keep this config?")
             answer = take_command()

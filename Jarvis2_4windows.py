@@ -1,5 +1,6 @@
 import configparser
 import os
+import requests
 
 import speech_recognition as sr
 
@@ -132,11 +133,16 @@ def run():
     main(search_engine, take_command, debug)
 
 
-if os.path.isfile('./config.ini'):  # Checks if config.ini exists.
+# Checks if config.ini exists and you have internet access.
+status_code = requests.get("https://github.com", timeout=5).status_code
+if os.path.isfile('./config.ini') and status_code == 200:
     config = configparser.ConfigParser()  # if exists loads library.
     config.read('config.ini')  # and also the file.
     run()  # Then it launches the main program
 else:
     # if it doesn't exist it drops an error message and exits.
-    print('You need a config.ini file.')
-    print('Check the documentation in the Github Repository.')
+    if os.path.isfile('./config.ini') is False:
+        print('You need a config.ini file.')
+        print('Check the documentation in the Github Repository.')
+    if status_code != 200:
+        print("I couldnt stablish an internet connection.")
