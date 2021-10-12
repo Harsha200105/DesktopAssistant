@@ -44,7 +44,17 @@ def search(search_query, search_engine):
     open_url(f"{search_engine}/search?q={search_query}")
 
 
+def gui_speak(text):
+    pass
+
+
+def set_gui_speak(command):
+    global gui_speak
+    gui_speak = command
+
+
 def speak(text):
+    gui_speak(text)
     engine.say(text)
     engine.runAndWait()
 
