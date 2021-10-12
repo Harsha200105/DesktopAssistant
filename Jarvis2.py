@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+!/usr/bin/env python3
 
 import datetime
 import getpass
@@ -33,20 +33,6 @@ search_engines = {
     "bing": "https://www.bing.com",
 }
 
-
-def open_url(url):
-    webbrowser.open(url)
-    chrome_path = r"open -a /Applications/Google\ Chrome.app %s"
-    webbrowser.get(chrome_path).open(url)
-
-
-def search(search_query, search_engine):
-    try:
-        open_url(f"{search_engines[search_engine]}/search?q={search_query}")
-    except IndexError:
-        open_url(f"https://www.google.com/search?q={search_query}")
-
-
 def speak(text):
     gui.speak(text)
     engine.say(text)
@@ -56,6 +42,18 @@ def speak(text):
 def print_and_speak(text):
     print(text)
     speak(text)
+
+def open_url(url):
+    webbrowser.open(url)
+    chrome_path = r"open -a /Applications/Google\ Chrome.app %s"
+    webbrowser.get(chrome_path).open(url)
+
+
+def search(search_query, search_engine = search_engines["google"]):
+    try:
+        open_url(f"{search_engines[search_engine]}/search?q={search_query}")
+    except :
+        print_and_speak("An Error has occured.")
 
 
 def wish_me():
@@ -95,6 +93,25 @@ def take_command():
 
     return query
 
+def add_music(path) :
+	music = []
+	os.path.normpath(path)
+	for item in os.listdir(path) :
+		try :
+			if os.path.isdir(os.path.join(path, item)) :
+				music.extend(add_music(os.path.join(path, item)))
+			elif os.path.isfile(os.path.join(path, item)) :
+				extensions = ["mp3", "ogg", "wav", "wma", "aac", "m4a", "flac"]
+				file_ext = i.split(".")[-1]
+				if file_ext in extensions :
+					music.append(os.path.join(path, i))
+		except :
+			print(f"ignored {item}")
+	return music
+	
+# Music Folder
+music_folder = "Your_music_folder_path(absolute_path)"
+music = add_music(music_folder)    
 
 speak("Initializing Jarvis....")
 wish_me()
@@ -168,13 +185,16 @@ def execute_the_command_said_by_user():
         speak("Bye Sir, have a good day.")
         sys.exit()
 
-    elif "play music" in query:
-        music_folder = "Your_music_folder_path(absolute_path)"
-        music = ("music1", "music2", "music3", "music4", "music5")
-        random_music = music_folder + random.choice(music) + ".mp3"
-        os.system(random_music)
+	elif "play music" in query:
+		speak("Playing your request")
+		mixer.init()
+		try : 
+			mixer.music.load(random.choice(music))
+			mixer.music.set_volume(1.0)
+			mixer.music.play()
+		except :
+			print("Format Not Supported")
 
-        speak("Playing your request")
 
     speak("Next Command! Sir!")
 
