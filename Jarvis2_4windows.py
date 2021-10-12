@@ -4,11 +4,13 @@ import os
 import requests
 import speech_recognition as sr
 
+import gui
 from actions import (
     change_rate,
     change_voice,
     change_volume,
     search_engine_selector,
+    set_gui_speak,
     speak,
     wish_me,
 )
@@ -37,7 +39,7 @@ popular_websites = {
 
 
 def main(search_engine, take_command, debug):
-    while True:
+    def execute_the_command_said_by_user():
         query = take_command()
 
         # logic for executing commands without arguments
@@ -86,6 +88,9 @@ def main(search_engine, take_command, debug):
             change_volume(query, take_command)
 
         speak("Next Command! Sir!")
+    gui.set_speak_command(execute_the_command_said_by_user)
+    set_gui_speak(gui.speak)
+    gui.mainloop()
 
 
 def run():
