@@ -18,8 +18,6 @@ def speak(text):
     chat_listbox.insert('end', f'Assistant: {text}')
 
 
-for x in range(1, 1001):
-    speak(str(x))
 scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
 chat_listbox.pack(fill=tk.BOTH, side=tk.RIGHT)
 scroll_bar.configure(command=chat_listbox.yview)
@@ -30,4 +28,3 @@ root.minsize(700, 500)
 root.wm_title('Desktop assistant')
 root.resizable(False, True)
 mainloop = root.mainloop
-mainloop()
