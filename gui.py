@@ -19,7 +19,7 @@ def speak(text):
 
 
 scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
-chat_listbox.pack(fill=tk.BOTH, side=tk.RIGHT)
+chat_listbox.pack(fill=tk.Y, side=tk.RIGHT)
 scroll_bar.configure(command=chat_listbox.yview)
 chat_listbox.configure(yscrollcommand=scroll_bar.set)
 main_frame.pack(fill=tk.BOTH)
