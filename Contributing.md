@@ -1,4 +1,4 @@
-# 🚀CONTRIBUTING GUIDLINES
+# 🚀Contribution Guidelines
 
 Developers are welcome to contribute to this project
 <br>Initial Step: Comment under the issue you want to work on and get the issue assigned to yourself.
