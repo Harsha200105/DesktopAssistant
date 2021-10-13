@@ -24,6 +24,7 @@ scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
 scroll_bar.configure(command=chat_listbox.yview)
 chat_listbox.configure(yscrollcommand=scroll_bar.set)
 main_frame.pack(fill=tk.BOTH)
+root.geometry('700x500')
 root.wm_title('Desktop assistant')
 root.resizable(False, False)
 mainloop = root.mainloop
