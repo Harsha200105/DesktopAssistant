@@ -1,0 +1,47 @@
+pip==18
+pep517
+pygame==2.0.1
+pyttsx3==2.90
+SpeechRecognition==3.8.1
+wikipedia==1.4.0
+PyAudio==0.2.11
+setuptools==58.0.4
+# sudo apt-get update
+# sudo apt install portaudio19-dev python3-pyaudio
+# sudo apt-get install espeak
+
+## all dependency with version
+# Name                    Version                   Build  Channel
+#_libgcc_mutex             0.1                        main  
+#_openmp_mutex             4.5                       1_gnu  
+#beautifulsoup4            4.10.0                   pypi_0    pypi
+#ca-certificates           2021.9.30            h06a4308_1  
+#certifi                   2021.5.30        py39h06a4308_0  
+#charset-normalizer        2.0.6                    pypi_0    pypi
+#idna                      3.2                      pypi_0    pypi
+#ld_impl_linux-64          2.35.1               h7274673_9  
+#libffi                    3.3                  he6710b0_2  
+#libgcc-ng                 9.3.0               h5101ec6_17  
+#libgomp                   9.3.0               h5101ec6_17  
+#libstdcxx-ng              9.3.0               hd4cf53a_17  
+#ncurses                   6.2                  he6710b0_1  
+#openssl                   1.1.1l               h7f8727e_0  
+#pip                       18.0                     pypi_0    pypi
+#pyaudio                   0.2.11                   pypi_0    pypi
+#pygame                    2.0.1                    pypi_0    pypi
+#python                    3.9.7                h12debd9_1  
+#pyttsx3                   2.90                     pypi_0    pypi
+#readline                  8.1                  h27cfd23_0  
+#requests                  2.26.0                   pypi_0    pypi
+#setuptools                58.0.4           py39h06a4308_0  
+#soupsieve                 2.2.1                    pypi_0    pypi
+#speechrecognition         3.8.1                    pypi_0    pypi
+#sqlite                    3.36.0               hc218d9a_0  
+#tk                        8.6.11               h1ccaba5_0  
+#tzdata                    2021a                h5d7bf9c_0  
+#urllib3                   1.26.7                   pypi_0    pypi
+#wheel                     0.37.0             pyhd3eb1b0_1  
+#wikipedia                 1.4.0                    pypi_0    pypi
+#xz                        5.2.5                h7b6447c_0  
+#zlib                      1.2.11               h7b6447c_3  
+

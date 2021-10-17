@@ -1,10 +1,8 @@
 pygame==2.0.1
-pyttsx3==2.90
 SpeechRecognition==3.8.1
 wikipedia==1.4.0
 PyAudio==0.2.11
-pygame==2.0.1
 pyttsx3==2.90
-SpeechRecognition==3.8.1
-wikipedia==1.4.0
+tk #Tkinter library for using GUI support
+
 
