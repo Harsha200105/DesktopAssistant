@@ -12,7 +12,7 @@ The basic purpose of this is to make work easier as it re-directs you to various
 
 
 # Requirements for windows
-Steps to run the Assistant on your pc------------------(use python 3.9)
+Steps to run the Assistant on your pc (use python 3.9)
 
 Installing all the necessary python module using
 ```
