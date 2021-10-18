@@ -4,27 +4,27 @@ import os  # isort: skip
 import gui  # isort: skip
 import speech_recognition as sr  # isort: skip
 from actions import (  # isort: skip
-  change_rate,
-  change_voice,
-  change_volume,
-  search_engine_selector,
-  set_gui_speak,
-  speak,
-  wish_me
+    change_rate,
+    change_voice,
+    change_volume,
+    search_engine_selector,
+    set_gui_speak,
+    speak,
+    wish_me
 )
 from commands import (  # isort: skip
-  command_bye,
-  command_hello,
-  command_mail,
-  command_nothing,
-  command_open,
-  command_pause_music,
-  command_play_music,
-  command_search,
-  command_stop_music,
-  command_unpause_music,
-  command_whatsup,
-  command_wikipedia
+    command_bye,
+    command_hello,
+    command_mail,
+    command_nothing,
+    command_open,
+    command_pause_music,
+    command_play_music,
+    command_search,
+    command_stop_music,
+    command_unpause_music,
+    command_whatsup,
+    command_wikipedia
 )
 
 popular_websites = {
@@ -86,6 +86,7 @@ def main(search_engine, take_command, debug):
             change_volume(query, take_command)
 
         speak("Next Command! Sir!")
+
     gui.set_speak_command(execute_the_command_said_by_user)
     set_gui_speak(gui.speak)
     gui.mainloop()
@@ -107,6 +108,7 @@ def run():
             with sr.Microphone() as source:
                 print("Listening....")
                 r.pause_threshold = 0.5
+                r.energy_threshold = int(config['DEFAULT']['energy_threshold'])
                 audio = r.listen(source)
 
             query = " "
