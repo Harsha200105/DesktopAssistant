@@ -41,7 +41,8 @@ For ubuntu user run
 python Jarvis2.py
 ```
 Wow! all done and now give some voice command 
-
+# Download
+For ubuntu users, install this [deb package](https://raw.githubusercontent.com/Harsha200105/DesktopAssistant/issue_44/bin/jarvis_1.0.0-1_all.deb).
 # Contributing Guidelines :<br>
 - We are Open for Pull Requests
 - Please contribute and add value to the code
