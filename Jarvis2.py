@@ -80,7 +80,7 @@ def take_command():
         r.pause_threshold = 0.5
         r.energy_threshold = 300
         """The default value as per speech_recognition documentation.
-        Increase if application stops responding. and decrease if 
+        Increase if application stops responding. and decrease if
         assistant doesn't execute any command and just says next
         command sir."""
 
