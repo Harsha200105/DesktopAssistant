@@ -78,7 +78,9 @@ def take_command():
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 0.5
-        r.energy_threshold = 300  # The default value as per speech_recognition documentation. Increase if application stops responding.
+        r.energy_threshold = 300
+        # The default value as per speech_recognition documentation. Increase if application stops responding.
+
         audio = r.listen(source)
 
     print("Recognizing....")
