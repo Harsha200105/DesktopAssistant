@@ -4,6 +4,8 @@ jobs:
   deb-package-creation:
     runs-on: ubuntu-latest
     steps:
+      - name: Delete previous deb file
+        run: rm bin/jarvis_deb.deb
       - name: checkout repository content
         uses: actions/checkout@v2
       - name: setup python
