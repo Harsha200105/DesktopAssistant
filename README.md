@@ -43,7 +43,7 @@ python Jarvis2.py
 Wow! all done and now give some voice command 
 # Download
  - For Windows users, download this [installer](https://raw.githubusercontent.com/Harsha200105/DesktopAssistant/issue_44/bin/jarvis%20desktop%20assistant%20setup.exe)
- - For Ubuntu users, download this [deb package](https://raw.githubusercontent.com/Harsha200105/DesktopAssistant/issue_44/bin/jarvis_1.0.0-1_all.deb).
+ - For Ubuntu users, download this [deb package](https://raw.githubusercontent.com/Harsha200105/DesktopAssistant/issue_44/bin/jarvis_deb.deb).
 # Contributing Guidelines :<br>
 - We are Open for Pull Requests
 - Please contribute and add value to the code
