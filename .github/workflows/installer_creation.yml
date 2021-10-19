@@ -4,12 +4,12 @@ jobs:
   deb-package-creation:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete previous deb file
-        run: rm bin/jarvis_deb.deb
       - name: checkout repository content
         uses: actions/checkout@v2
       - name: setup python
         uses: actions/setup-python@v2
+      - name: Delete previous deb file
+        run: rm bin/jarvis_deb.deb
       - name: Update
         run: sudo apt-get update
       - name: Install portaudio19-dev and python3-pyaudio
