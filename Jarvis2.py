@@ -78,6 +78,7 @@ def take_command():
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 0.5
+        r.energy_threshold = int(config['DEFAULT']['energy_threshold'])
         audio = r.listen(source)
 
     print("Recognizing....")
