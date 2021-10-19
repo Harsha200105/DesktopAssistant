@@ -44,5 +44,7 @@ jobs:
         run: git add -A
       - name: Git commit
         run: git commit -m "Installer update"
+      - name: Git pull
+        run: git pull
       - name: Git push
         run: git push
