@@ -1,0 +1,8 @@
+Package: Jarvis
+Version: 1.0.0
+Architecture: all
+Maintainer: Technerd Brainiac
+Copyright: 2021 Technerd Brainiac
+License: MIT
+Homepage: https://github.com/Harsha200105/DesktopAssistant
+Description: A Virtual Desktop Assistant Written in Python
