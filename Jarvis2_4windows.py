@@ -1,5 +1,5 @@
 import configparser  # isort: skip
-from getpass import getuser
+from getpass import getuser  # isort: skip
 import os  # isort: skip
 
 import gui  # isort: skip
