@@ -1,4 +1,5 @@
 import configparser  # isort: skip
+from getpass import getuser
 import os  # isort: skip
 
 import gui  # isort: skip
@@ -94,6 +95,8 @@ def main(search_engine, take_command, debug):
 
 def run():
     master = config['DEFAULT']['master']
+    if master == '<your name here>':  # If custom username is not set
+        master = getuser()
 
     search_engine = search_engine_selector(config)
 
