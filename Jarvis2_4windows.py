@@ -26,7 +26,7 @@ from commands import (
     command_stop_music,
     command_unpause_music,
     command_whatsup,
-    command_wikipedia
+    command_wikipedia,
 )
 
 popular_websites = {
