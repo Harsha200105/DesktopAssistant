@@ -16,14 +16,15 @@ speak_button.pack(side=tk.LEFT, anchor=tk.SW)
 
 def speak(text):
     chat_listbox.insert('end', f'Assistant: {text}')
-    root.geometry('700x500')
 
 
-chat_listbox.pack(fill=tk.Y, side=tk.LEFT)
 scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
+chat_listbox.pack(fill=tk.Y, side=tk.RIGHT)
 scroll_bar.configure(command=chat_listbox.yview)
 chat_listbox.configure(yscrollcommand=scroll_bar.set)
 main_frame.pack(fill=tk.BOTH)
+root.geometry('700x500')
+root.minsize(700, 500)
 root.wm_title('Desktop assistant')
-root.resizable(False, False)
+root.resizable(False, True)
 mainloop = root.mainloop

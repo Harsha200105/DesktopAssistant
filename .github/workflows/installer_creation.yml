@@ -1,0 +1,50 @@
+name: Installer creation
+on: [push]
+jobs:
+  deb-package-creation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository content
+        uses: actions/checkout@v2
+      - name: setup python
+        uses: actions/setup-python@v2
+      - name: Delete previous deb file
+        run: rm bin/jarvis_deb.deb
+      - name: Update
+        run: sudo apt-get update
+      - name: Install portaudio19-dev and python3-pyaudio
+        run: sudo apt install portaudio19-dev python3-pyaudio
+      - name: Install espeak
+        run: sudo apt-get install espeak
+      - name: Install requirements
+        run: pip3 install -r ubuntu_requirements.txt
+      - name: Install pyinstaller
+        run: pip3 install pyinstaller
+      - name: Build pyinstaller package
+        run: pyinstaller Jarvis2.py -w
+      - name: delete build directory
+        run: rm -rf build
+      - name: delete spec file
+        run: rm Jarvis2.spec
+      - name: jarvis_deb directory
+        run: mkdir -p jarvis_deb/usr/local/bin ; mkdir -p jarvis_deb/usr/share/applications ; mkdir jarvis_deb/DEBIAN
+      - name: Copy debian control file and .desktop file
+        run: cp -b "installer maker files/control" "jarvis_deb/DEBIAN" ; cp -b "installer maker files/jarvis desktop assistant.desktop" "jarvis_deb/usr/share/applications"
+      - name: Copy pyinstaller package
+        run: cp -r "dist/Jarvis2" "jarvis_deb/usr/local/bin"
+      - name: Build deb package
+        run: dpkg-deb --build --root-owner-group jarvis_deb
+      - name: Remove dist and jarvis_deb directories
+        run: rm -r dist ; rm -r jarvis_deb
+      - name: Move Jarvis_deb.deb to bin folder
+        run: cp -b "jarvis_deb.deb" "bin" && rm "jarvis_deb.deb"
+      - name: Git config
+        run: git config --global user.name "Installer creation bot"
+      - name: Git add
+        run: git add -A
+      - name: Git commit
+        run: git commit -m "Installer update"
+      - name: Git pull
+        run: git pull
+      - name: Git push
+        run: git push

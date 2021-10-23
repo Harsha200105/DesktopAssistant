@@ -26,7 +26,7 @@ from commands import (
     command_stop_music,
     command_unpause_music,
     command_whatsup,
-    command_wikipedia,
+    command_wikipedia
 )
 
 popular_websites = {
@@ -88,6 +88,7 @@ def main(search_engine, take_command, debug):
             change_volume(query, take_command)
 
         speak("Next Command! Sir!")
+
     gui.set_speak_command(execute_the_command_said_by_user)
     set_gui_speak(gui.speak)
     gui.mainloop()
@@ -109,6 +110,7 @@ def run():
             with sr.Microphone() as source:
                 print("Listening....")
                 r.pause_threshold = 0.5
+                r.energy_threshold = int(config['DEFAULT']['energy_threshold'])
                 audio = r.listen(source)
 
             query = " "

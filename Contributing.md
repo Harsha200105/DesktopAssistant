@@ -1,21 +1,80 @@
-## Contribution Guidelines 
+# 🚀Contribution Guidelines
 
 Developers are welcome to contribute to this project
 <br>Initial Step: Comment under the issue you want to work on and get the issue assigned to yourself.
 <br>
-## Steps for contributing 
-<br>1. Fork the repo by clicking on the Fork option<br>
-2. Clone the repo to make it available on your local system by using
-  ```git clone <FORKED_REPO_URL>```
-Here, forked repo url is of the form ```https://github.com/githubid/DesktopAssitant``` <br>
-3. cd into the project directory i.e  - ```cd DesktopAssitant```<br>
-4. Create a new branch using ```git branch <new_branch_name>``` Here, you can try and keep branch name as the number of issue you are trying to solve i.e ```issue_1``` <br>
-5. Checkout to the new branch so you can push onto the new branch of the forked repo. ```git checkout <new_branch_name>``` <br>
-6. Now you can do the required changes you want to make anywhere in the code<br>
-7. Stage the changes by using ```git add .``` <br>
-8. Commit the changes made by using  ```git commit -m "anything that expresses whatever changes you have made"```. <br>
-9. Push the changes using ```git push origin <new_branch_name>```
- 
+# Steps for contributing 
+## Fork this repository
+Fork the repo by clicking on the Fork option<br>
+## Clone the repository 
+Now clone the forked repository to your machine. Go to your GitHub account, open the forked repository, click on the code button and then click the _copy to clipboard_ icon.
+
+Open a terminal and run the following git command:
+
+```
+git clone "url you just copied"
+```
+
+where "url you just copied" (without the quotation marks) is the url to this repository (your fork of this project). See the previous steps to obtain the url.
+
+For example:
+
+```
+git clone https://github.com/YOUR-USERNAME/DesktopAssistant.git 
+```
+
+where `YOUR-USERNAME` is your GitHub username. Here you're copying the contents of the first-contributions repository on GitHub to your computer.
+
+## Create a branch
+
+Change to the repository directory on your computer (if you are not already there):
+
+```
+Run `cd DesktopAssitant`
+```
+
+Now create a branch using the `git branch` command:
+
+```
+Run `git branch <new_branch_name>`
+```
+Here, you can try and keep branch name as the number of issue you are trying to solve i.e ```issue_1``` <br>
+
+Checkout to the new branch so you can push onto the new branch of the forked repository 
+
+```
+git checkout <new_branch_name>
+```
+
+
+## Make necessary changes and commit those changes
+
+If you go to the project directory and execute the command `git status`, you'll see there are changes.
+
+Add those changes to the branch you just created using the `git add` command:
+
+```
+git add .
+```
+
+Now commit those changes using the `git commit` command:
+
+```
+git commit -m "anything that expresses whatever changes you have made"
+```
+
+## Push changes to GitHub
+
+Push your changes using the command `git push`:
+
+```
+git push origin <new_branch_name>
+```
+
+replacing `<new_branch_name>` with the name of the branch you created earlier.
+
+## Submit your changes for review
+
 Now you are ready to make a pull request. Go to the forked repo on Github under your profile and a click on the ```Compare & pull request```button. You will be taken to a page where you can create a pull request.
 When creating a PR, add the linked issue in the description. For example : "Closes #1" if the issue you have resolved is issue #1
 <br>
