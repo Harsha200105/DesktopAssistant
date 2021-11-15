@@ -91,6 +91,21 @@ def command_bye():
     sys.exit()
 
 
+def command_volume_up():
+    volume = mixer.music.get_volume()
+    if volume < 1:
+        mixer.music.set_volume(volume + 0.1)
+    else:
+        pass
+
+def command_volume_down():
+    volume = mixer.music.get_volume()
+    if volume > 0:
+        mixer.music.set_volume(volume - 0.1)
+    else:
+        pass
+
+
 def command_play_music():
     try:
         music_folder = config['DEFAULT']['musicPath']
