@@ -98,6 +98,7 @@ def command_volume_up():
     else:
         pass
 
+
 def command_volume_down():
     volume = mixer.music.get_volume()
     if volume > 0:
