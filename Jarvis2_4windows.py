@@ -24,7 +24,9 @@ from commands import (  # isort: skip
     command_stop_music,
     command_unpause_music,
     command_whatsup,
-    command_wikipedia
+    command_wikipedia,
+    command_volume_up,
+    command_volume_down
 )
 
 popular_websites = {
@@ -51,7 +53,9 @@ def main(search_engine, take_command, debug):
             "play music": command_play_music,
             "unpause": command_unpause_music,
             "pause music": command_pause_music,
-            "stop music": command_stop_music
+            "stop music": command_stop_music,
+            "volume up": command_volume_up,
+            "volume down": command_volume_down,
         }
         for phrase, command in phrases.items():
             if phrase in query:
